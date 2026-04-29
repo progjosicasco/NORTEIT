@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Soluciones IT Inteligentes — Soporte técnico, desarrollo web y tecnología sin complicaciones para personas y pequeños negocios." />
+<meta name="keywords" content="soporte técnico, desarrollo web, soluciones IT, tecnología, computadoras, páginas web, negocios digitales" />
+<meta name="author" content="Soluciones IT Inteligentes" />
+<meta property="og:title" content="Soluciones IT Inteligentes — Tecnología sin complicaciones" />
+<meta property="og:description" content="Soporte técnico, desarrollo web y consejos digitales para que la tecnología trabaje para vos." />
+<meta property="og:type" content="website" />
+<title>Soluciones IT Inteligentes — Tecnología sin complicaciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+/* ═══════════════════════════════════════════════
+   SOLUCIONES IT INTELIGENTES — Estilos globales
+   Paleta: Negro #0a0a0a · Blanco #f8f8f6 · Azul eléctrico #1d6ef5
+   Tipografía: Sora (display) + Plus Jakarta Sans (cuerpo)
+═══════════════════════════════════════════════ */
+
+:root {
+  --black:       #0a0a0a;
+  --black-mid:   #141414;
+  --black-soft:  #1e1e1e;
+  --black-card:  #181818;
+  --border:      #2a2a2a;
+  --border-lit:  #333333;
+  --white:       #f8f8f6;
+  --white-dim:   #b8b8b4;
+  --white-muted: #606060;
+  --blue:        #1d6ef5;
+  --blue-bright: #3d8aff;
+  --blue-glow:   rgba(29,110,245,0.18);
+  --blue-glow2:  rgba(29,110,245,0.08);
+  --red-warn:    #ff4545;
+  --green-ok:    #22c55e;
+
+  --font-display: 'Sora', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+
+  --r-sm:  6px;
+  --r-md:  12px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-pill:999px;
+
+  --ease:        cubic-bezier(0.25,0.1,0.25,1);
+  --ease-out:    cubic-bezier(0.0,0.0,0.2,1);
+  --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+
+  --max: 1200px;
+  --nav-h: 70px;
+
+  --shadow-blue: 0 0 40px rgba(29,110,245,0.25), 0 8px 30px rgba(0,0,0,0.6);
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.5);
+  --shadow-hover:0 8px 40px rgba(0,0,0,0.7);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, textarea, select { font-family: inherit; font-size: inherit; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: var(--r-sm); }
+
+/* ── ACCESIBILIDAD ── */
+.sr-only { position: absolute; width:1px; height:1px; clip: rect(0,0,0,0); overflow:hidden; white-space:nowrap; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--black-mid); }
+::-webkit-scrollbar-thumb { background: var(--border-lit); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ══════════════════════════════
+   TIPOGRAFÍA
+══════════════════════════════ */
+h1,h2,h3,h4,h5 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--white);
+}
+h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 800; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; }
+h4 { font-size: 1.1rem; font-weight: 600; }
+
+p { color: var(--white-dim); font-weight: 300; font-size: 1rem; line-height: 1.75; }
+
+.highlight { color: var(--blue-bright); }
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-bright);
+  background: var(--blue-glow2);
+  border: 1px solid rgba(29,110,245,0.25);
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  margin-bottom: 16px;
+}
+
+/* ══════════════════════════════
+   BOTONES
+══════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.25s var(--ease);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(29,110,245,0.35);
+}
+.btn-primary:hover {
+  background: var(--blue-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(29,110,245,0.5);
+}
+.btn-outline {
+  border: 1.5px solid var(--border-lit);
+  color: var(--white-dim);
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue-bright); background: var(--blue-glow2); }
+.btn-ghost { color: var(--blue-bright); font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 0; }
+.btn-ghost:hover { gap: 10px; }
+.btn-ghost svg { transition: transform 0.2s; }
+.btn-ghost:hover svg { transform: translateX(3px); }
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+}
+.btn-whatsapp:hover { background: #20b859; transform: translateY(-2px); }
+
+/* ══════════════════════════════
+   LAYOUT HELPERS
+══════════════════════════════ */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section-sm { padding: 60px 0; }
+
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-header p { max-width: 560px; margin: 16px auto 0; font-size: 1.05rem; }
+
+/* Divisor de sección */
+.divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0;
+}
+
+/* ══════════════════════════════
+   ANIMACIONES SCROLL
+══════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ══════════════════════════════
+   PÁGINAS (SPA simple)
+══════════════════════════════ */
+.page { display: none; }
+.page.active { display: block; animation: pageIn 0.4s var(--ease-out); }
+@keyframes pageIn { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--nav-h);
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+.navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.6); }
+.nav-inner {
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: var(--max); margin: 0 auto; padding: 0 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+  cursor: pointer;
+}
+.nav-logo-icon {
+  width: 36px; height: 36px;
+  background: var(--blue);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #fff;
+  box-shadow: 0 0 18px rgba(29,110,245,0.5);
+}
+.nav-logo span { letter-spacing: -0.03em; }
+.nav-logo em { color: var(--blue-bright); font-style: normal; }
+
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  padding: 7px 14px;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--white-dim);
+  border-radius: var(--r-sm);
+  transition: color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.nav-link:hover, .nav-link.active { color: var(--white); background: var(--black-soft); }
+.nav-link.active { color: var(--blue-bright); }
+.nav-cta { margin-left: 12px; padding: 9px 20px; font-size: 0.85rem; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.ham { width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+.hamburger.open .ham:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open .ham:nth-child(2) { opacity: 0; }
+.hamburger.open .ham:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile nav panel */
+.mobile-nav {
+  position: fixed; inset: 0; top: var(--nav-h); z-index: 190;
+  background: var(--black-mid);
+  transform: translateX(100%);
+  transition: transform 0.35s var(--ease-out);
+  padding: 32px 24px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.mobile-nav.open { transform: none; }
+.mobile-nav .nav-link { font-size: 1.1rem; padding: 14px 16px; display: block; }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: var(--nav-h);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fondo decorativo */
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 70% 40%, rgba(29,110,245,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(29,110,245,0.06) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, black 0%, transparent 70%);
+  opacity: 0.25;
+}
+
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+  padding: 80px 24px 100px;
+  max-width: var(--max); margin: 0 auto; width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; font-weight: 500;
+  color: var(--blue-bright);
+  background: var(--blue-glow2);
+  border: 1px solid rgba(29,110,245,0.3);
+  padding: 6px 14px; border-radius: var(--r-pill);
+  margin-bottom: 24px;
+}
+.hero-badge-dot { width: 6px; height: 6px; background: var(--blue-bright); border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+.hero-title { margin-bottom: 20px; }
+.hero-title .line { display: block; }
+.hero-title .line-accent {
+  background: linear-gradient(90deg, var(--blue-bright), #6fb0ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.hero-desc { font-size: 1.05rem; max-width: 480px; margin-bottom: 36px; line-height: 1.7; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+
+.hero-trust { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--white-muted); font-weight: 500; }
+.trust-icon { font-size: 14px; }
+
+/* Tarjeta visual lado derecho */
+.hero-visual { position: relative; display: flex; flex-direction: column; gap: 16px; }
+.hero-card {
+  background: var(--black-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+}
+.hc-top { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.hc-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), #6fb0ff);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.hc-name { font-weight: 600; font-size: 0.9rem; }
+.hc-role { font-size: 0.78rem; color: var(--white-muted); }
+.hc-badge-ok { background: rgba(34,197,94,0.12); color: var(--green-ok); border: 1px solid rgba(34,197,94,0.25); padding: 3px 10px; border-radius: var(--r-pill); font-size: 0.72rem; font-weight: 600; margin-left: auto; }
+
+.hc-stat-row { display: flex; gap: 16px; margin-top: 16px; }
+.hc-stat { flex: 1; background: var(--black-soft); border-radius: var(--r-md); padding: 14px 16px; text-align: center; }
+.hc-stat-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--white); }
+.hc-stat-label { font-size: 0.72rem; color: var(--white-muted); margin-top: 2px; }
+
+.hc-mini {
+  background: var(--black-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 22px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: var(--shadow-card);
+}
+.hc-mini-icon { font-size: 22px; }
+.hc-mini-text strong { font-size: 0.9rem; display: block; }
+.hc-mini-text span { font-size: 0.78rem; color: var(--white-muted); }
+.hc-mini-arrow { margin-left: auto; color: var(--blue-bright); font-size: 18px; }
+
+.hero-float-badge {
+  position: absolute; top: -12px; right: -12px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.72rem; font-weight: 700;
+  padding: 6px 12px; border-radius: var(--r-pill);
+  box-shadow: var(--shadow-blue);
+  animation: float-badge 3s ease-in-out infinite;
+}
+@keyframes float-badge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ══════════════════════════════
+   SERVICIOS
+══════════════════════════════ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.service-card {
+  background: var(--black-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 36px 30px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+  cursor: default;
+}
+.service-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 30%, var(--blue-glow), transparent 60%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.service-card:hover { border-color: rgba(29,110,245,0.4); transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.service-card:hover::after { opacity: 1; }
+.service-icon {
+  width: 52px; height: 52px;
+  background: var(--blue-glow2);
+  border: 1px solid rgba(29,110,245,0.25);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.service-card h3 { font-size: 1.15rem; margin-bottom: 12px; position: relative; z-index: 1; }
+.service-card p { font-size: 0.9rem; color: var(--white-muted); position: relative; z-index: 1; line-height: 1.6; }
+.service-price {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--blue-bright);
+  position: relative; z-index: 1;
+}
+
+/* ══════════════════════════════
+   ÚLTIMOS ARTÍCULOS (HOME)
+══════════════════════════════ */
+.posts-home-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+.post-card {
+  background: var(--black-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+}
+.post-card:hover { border-color: rgba(29,110,245,0.35); transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+.post-card.featured { grid-row: span 2; }
+
+.post-thumb {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.post-card.featured .post-thumb { height: 280px; }
+.post-thumb-img {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+  transition: transform 0.5s var(--ease-out);
+}
+.post-card:hover .post-thumb-img { transform: scale(1.05); }
+
+.post-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+.post-cat {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue-bright); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.post-cat::before { content: ''; display: block; width: 14px; height: 1.5px; background: var(--blue-bright); }
+.post-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; transition: color 0.2s; }
+.post-card:hover h3 { color: var(--blue-bright); }
+.post-card.featured h3 { font-size: 1.4rem; }
+.post-excerpt { font-size: 0.88rem; color: var(--white-muted); line-height: 1.65; margin-bottom: 20px; flex: 1; }
+.post-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: var(--white-muted); padding-top: 16px; border-top: 1px solid var(--border); }
+.post-read-time { color: var(--blue-bright); font-weight: 600; }
+
+/* ══════════════════════════════
+   SOBRE MÍ
+══════════════════════════════ */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.about-img-wrap { position: relative; }
+.about-img {
+  width: 100%; aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--black-soft) 0%, var(--black-card) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow-blue);
+}
+.about-img::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 40% 40%, var(--blue-glow), transparent 60%);
+}
+.about-float {
+  position: absolute; bottom: -12px; right: -12px;
+  background: var(--black-card); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 16px 20px;
+  box-shadow: var(--shadow-card); min-width: 180px;
+}
+.about-float-num { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--blue-bright); }
+.about-float-label { font-size: 0.78rem; color: var(--white-muted); }
+
+.about-content .tag { margin-bottom: 20px; }
+.about-content h2 { margin-bottom: 20px; }
+.about-content p { margin-bottom: 16px; }
+.about-skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; margin-bottom: 32px; }
+.skill-chip {
+  padding: 6px 14px;
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: 0.82rem; font-weight: 500; color: var(--white-dim);
+}
+
+/* ══════════════════════════════
+   TESTIMONIOS
+══════════════════════════════ */
+.testimonials-section { background: var(--black-mid); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.testi-card {
+  background: var(--black-card); border: 1px solid var(--border); border-radius: var(--r-xl);
+  padding: 32px 28px; position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.testi-card:hover { border-color: rgba(29,110,245,0.3); transform: translateY(-4px); }
+.testi-quote {
+  font-size: 2.5rem; color: var(--blue); line-height: 1;
+  font-family: var(--font-display); font-weight: 800;
+  margin-bottom: 16px;
+}
+.testi-text { font-size: 0.92rem; color: var(--white-dim); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+.testi-stars { color: #f5c518; font-size: 0.85rem; margin-bottom: 16px; letter-spacing: 2px; }
+.testi-author { display: flex; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+.testi-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), #6fb0ff); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 0.9rem; flex-shrink: 0; }
+.testi-name { font-weight: 600; font-size: 0.88rem; }
+.testi-rol { font-size: 0.76rem; color: var(--white-muted); }
+
+/* ══════════════════════════════
+   CTA BAND
+══════════════════════════════ */
+.cta-band {
+  background: linear-gradient(135deg, var(--blue) 0%, #0d4acc 100%);
+  border-radius: var(--r-xl);
+  padding: 64px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+  margin: 0 24px;
+}
+.cta-band::before {
+  content: '';
+  position: absolute; top: -50%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%);
+}
+.cta-band h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+.cta-band p { color: rgba(255,255,255,0.8); max-width: 480px; }
+.cta-band .btn { background: #fff; color: var(--blue); font-weight: 700; }
+.cta-band .btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+
+/* ══════════════════════════════
+   BLOG PAGE — Listado
+══════════════════════════════ */
+.blog-header {
+  padding: 100px 24px 60px;
+  max-width: var(--max); margin: var(--nav-h) auto 0;
+}
+.blog-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; }
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: var(--r-pill);
+  font-size: 0.83rem; font-weight: 600;
+  border: 1.5px solid var(--border);
+  color: var(--white-muted);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.filter-btn:hover, .filter-btn.active { border-color: var(--blue); color: var(--blue-bright); background: var(--blue-glow2); }
+
+.blog-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; padding: 0 24px 80px;
+  max-width: var(--max); margin: 0 auto;
+}
+.blog-grid .post-card { flex-direction: column; }
+.blog-grid .post-thumb { height: 200px; }
+
+/* ══════════════════════════════
+   ARTÍCULO INDIVIDUAL
+══════════════════════════════ */
+.article-wrap {
+  max-width: 760px; margin: 0 auto;
+  padding: calc(var(--nav-h) + 60px) 24px 100px;
+}
+.article-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; color: var(--white-muted);
+  margin-bottom: 36px; cursor: pointer;
+  transition: color 0.2s;
+}
+.article-back:hover { color: var(--blue-bright); }
+.article-back svg { transition: transform 0.2s; }
+.article-back:hover svg { transform: translateX(-3px); }
+
+.article-header { margin-bottom: 40px; }
+.article-hero-thumb {
+  width: 100%; height: 360px;
+  border-radius: var(--r-xl);
+  margin-bottom: 40px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.article-hero-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 40%, var(--blue-glow), transparent 60%);
+}
+
+.article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 0.82rem; color: var(--white-muted); margin-bottom: 24px; }
+.article-meta-dot { width: 3px; height: 3px; background: var(--white-muted); border-radius: 50%; }
+
+.article-title { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 24px; }
+
+.article-content h2 { font-size: 1.5rem; margin: 40px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+.article-content h3 { font-size: 1.15rem; margin: 28px 0 12px; color: var(--blue-bright); }
+.article-content p { margin-bottom: 20px; font-size: 1rem; line-height: 1.8; }
+.article-content ul, .article-content ol { padding-left: 24px; margin-bottom: 20px; }
+.article-content li { margin-bottom: 10px; color: var(--white-dim); font-size: 0.97rem; line-height: 1.7; }
+.article-content ul li { list-style: disc; }
+.article-content ol li { list-style: decimal; }
+.article-content strong { color: var(--white); font-weight: 600; }
+.article-content em { color: var(--blue-bright); font-style: normal; font-weight: 500; }
+
+.article-tip {
+  background: var(--blue-glow2);
+  border: 1px solid rgba(29,110,245,0.25);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--r-md);
+  padding: 20px 24px; margin: 28px 0;
+}
+.article-tip strong { color: var(--blue-bright); display: block; margin-bottom: 6px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.article-tip p { color: var(--white-dim); margin: 0; font-size: 0.95rem; }
+
+.article-share { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+.article-share h4 { margin-bottom: 16px; font-size: 0.9rem; color: var(--white-muted); font-family: var(--font-body); font-weight: 500; }
+.share-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.share-btn {
+  padding: 10px 20px; border-radius: var(--r-pill);
+  font-size: 0.82rem; font-weight: 600;
+  border: 1.5px solid var(--border);
+  color: var(--white-muted);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: all 0.2s; cursor: pointer;
+}
+.share-btn:hover { border-color: var(--blue); color: var(--blue-bright); background: var(--blue-glow2); }
+.share-btn.wa:hover { border-color: #25d366; color: #25d366; background: rgba(37,211,102,0.08); }
+
+/* ══════════════════════════════
+   CONTACTO
+══════════════════════════════ */
+.contact-wrap {
+  max-width: var(--max); margin: 0 auto;
+  padding: calc(var(--nav-h) + 60px) 24px 100px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.contact-info h1 { margin-bottom: 20px; }
+.contact-info p { margin-bottom: 32px; }
+.contact-methods { display: flex; flex-direction: column; gap: 16px; }
+.contact-method {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--black-card); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+.contact-method:hover { border-color: rgba(29,110,245,0.4); }
+.cm-icon { font-size: 22px; }
+.cm-label { font-size: 0.78rem; color: var(--white-muted); }
+.cm-value { font-weight: 600; font-size: 0.9rem; }
+.cm-arrow { margin-left: auto; color: var(--blue-bright); font-size: 1.2rem; }
+
+.contact-form-box {
+  background: var(--black-card); border: 1px solid var(--border);
+  border-radius: var(--r-xl); padding: 40px 36px;
+  position: relative; overflow: hidden;
+}
+.contact-form-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--blue), transparent);
+}
+.contact-form-box h3 { margin-bottom: 8px; }
+.contact-form-box > p { margin-bottom: 28px; font-size: 0.9rem; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--white-muted); margin-bottom: 8px; letter-spacing: 0.03em; }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 13px 16px;
+  background: var(--black-soft); border: 1.5px solid var(--border);
+  border-radius: var(--r-md); color: var(--white);
+  font-size: 0.92rem; transition: border-color 0.2s; outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--white-muted); }
+.form-group textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+.form-group select { cursor: pointer; }
+.form-group select option { background: var(--black-soft); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit { margin-top: 8px; width: 100%; justify-content: center; }
+.form-note { font-size: 0.78rem; color: var(--white-muted); text-align: center; margin-top: 12px; }
+.form-feedback { margin-top: 16px; padding: 14px 18px; border-radius: var(--r-md); font-size: 0.88rem; font-weight: 500; display: none; }
+.form-feedback.ok { display: block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: var(--green-ok); }
+.form-feedback.err { display: block; background: rgba(255,69,69,0.1); border: 1px solid rgba(255,69,69,0.25); color: var(--red-warn); }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  background: var(--black-mid);
+  border-top: 1px solid var(--border);
+  padding: 64px 24px 32px;
+}
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 0.88rem; color: var(--white-muted); margin-top: 16px; max-width: 280px; }
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.social-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: center; font-size: 14px; color: var(--white-muted);
+  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.social-btn:hover { border-color: var(--blue); color: var(--blue-bright); }
+.footer-col h5 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--white-muted); margin-bottom: 16px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col li { font-size: 0.88rem; color: var(--white-muted); cursor: pointer; transition: color 0.2s; }
+.footer-col li:hover { color: var(--blue-bright); }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; color: var(--white-muted); }
+
+/* ══════════════════════════════
+   TOAST
+══════════════════════════════ */
+.toast-box { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.toast {
+  padding: 14px 20px; border-radius: var(--r-md);
+  background: var(--black-soft); border: 1px solid var(--border);
+  color: var(--white); font-size: 0.88rem; font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  animation: toastIn 0.3s var(--ease-spring);
+  pointer-events: auto; max-width: 300px;
+}
+.toast.out { animation: toastOut 0.2s var(--ease) forwards; }
+@keyframes toastIn { from{opacity:0;transform:translateY(16px) scale(0.95)} to{opacity:1;transform:none} }
+@keyframes toastOut { to{opacity:0;transform:translateY(-8px) scale(0.95)} }
+
+/* ══════════════════════════════
+   BACK TO TOP
+══════════════════════════════ */
+.btt {
+  position: fixed; bottom: 24px; left: 24px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--blue); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(29,110,245,0.4);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none; z-index: 100; cursor: pointer;
+}
+.btt.visible { opacity: 1; transform: none; pointer-events: auto; }
+.btt:hover { background: var(--blue-bright); }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 500px; margin: 0 auto; }
+  .hero-inner { padding: 60px 24px 80px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-img-wrap { max-width: 400px; margin: 0 auto; }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .posts-home-grid { grid-template-columns: 1fr; }
+  .post-card.featured { grid-row: auto; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .cta-band { padding: 48px 32px; flex-direction: column; text-align: center; }
+  .footer-top { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .blog-header { padding: 80px 24px 40px; }
+  h1 { font-size: clamp(2rem, 7vw, 3rem); }
+  .section { padding: 70px 0; }
+  .article-hero-thumb { height: 240px; }
+  .cta-band { margin: 0 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     NAVBAR
+════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="navigate('home')">
+      <div class="nav-logo-icon">IT</div>
+      <span>Soluciones <em>IT</em></span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link active" data-page="home" onclick="navigate('home')">Inicio</span>
+      <span class="nav-link" data-page="blog" onclick="navigate('blog')">Blog</span>
+      <span class="nav-link" data-page="contact" onclick="navigate('contact')">Contacto</span>
+    </div>
+    <button class="btn btn-primary nav-cta" onclick="navigate('contact')">Solicitar ayuda →</button>
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menú">
+      <span class="ham"></span><span class="ham"></span><span class="ham"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Menú móvil -->
+<div class="mobile-nav" id="mobileNav">
+  <span class="nav-link" onclick="navigate('home');toggleMenu()">🏠 Inicio</span>
+  <span class="nav-link" onclick="navigate('blog');toggleMenu()">📝 Blog</span>
+  <span class="nav-link" onclick="navigate('contact');toggleMenu()">📩 Contacto</span>
+  <button class="btn btn-primary" style="margin-top:16px;justify-content:center" onclick="navigate('contact');toggleMenu()">Solicitar ayuda →</button>
+</div>
+
+<!-- ════════════════════════════
+     PÁGINA: HOME
+════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Disponible para nuevos proyectos
+        </div>
+        <h1 class="hero-title">
+          <span class="line">La tecnología</span>
+          <span class="line line-accent">sin complicaciones.</span>
+        </h1>
+        <p class="hero-desc">
+          Soporte técnico profesional, desarrollo web y soluciones digitales para personas y pequeños negocios que quieren crecer — sin vueltas, sin tecnicismos, con resultados reales.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="navigate('contact')">
+            Solicitar ayuda
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="btn btn-outline" onclick="navigate('blog')">Ver artículos</button>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="trust-icon">✅</span> Sin contratos</div>
+          <div class="trust-item"><span class="trust-icon">⚡</span> Respuesta en horas</div>
+          <div class="trust-item"><span class="trust-icon">🔒</span> 100% confiable</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-float-badge">+47 clientes ayudados</div>
+          <div class="hc-top">
+            <div class="hc-avatar">IT</div>
+            <div>
+              <div class="hc-name">Soluciones IT Inteligentes</div>
+              <div class="hc-role">Soporte & Desarrollo Web</div>
+            </div>
+            <span class="hc-badge-ok">● En línea</span>
+          </div>
+          <p style="font-size:0.88rem;color:var(--white-muted);margin-bottom:0">
+            "Tu computadora lenta, tu web rota o tu negocio sin presencia digital tienen solución. Escribime hoy."
+          </p>
+          <div class="hc-stat-row">
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="47">0</div>
+              <div class="hc-stat-label">Clientes</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="98">0</div>
+              <div class="hc-stat-label">% Satisfacción</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="3">0</div>
+              <div class="hc-stat-label">Años exp.</div>
+            </div>
+          </div>
+        </div>
+        <div class="hc-mini" onclick="navigate('contact')" style="cursor:pointer">
+          <span class="hc-mini-icon">💬</span>
+          <div class="hc-mini-text">
+            <strong>¿Necesitás ayuda ahora?</strong>
+            <span>Consultá sin costo ni compromiso</span>
+          </div>
+          <span class="hc-mini-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICIOS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="tag">Lo que hago</div>
+        <h2>Servicios que solucionan <br />problemas reales</h2>
+        <p>Sin rodeos. Cada servicio está diseñado para darte tranquilidad y resultados concretos.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🖥️</div>
+          <h3>Soporte Técnico</h3>
+          <p>Tu computadora lenta, con virus, que no arranca o con problemas de red. Lo diagnostico y soluciono de forma remota o a domicilio.</p>
+          <div class="service-price">Desde $30 · Sesión puntual o mensual</div>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🌐</div>
+          <h3>Páginas Web Profesionales</h3>
+          <p>Creación de sitios web modernos, rápidos y pensados para atraer clientes. Perfectos para emprendedores y pequeños negocios.</p>
+          <div class="service-price">Desde $299 · Entrega en 7 días</div>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">🛡️</div>
+          <h3>Mantenimiento Mensual</h3>
+          <p>Que alguien cuide tu tecnología por vos. Actualizaciones, backups, seguridad y soporte incluido mes a mes.</p>
+          <div class="service-price">Desde $49/mes · Sin permanencia</div>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">📦</div>
+          <h3>Configuración de Software</h3>
+          <p>Instalación y configuración de programas, Office, facturación electrónica, antivirus y cualquier aplicación que necesitás.</p>
+          <div class="service-price">Desde $20 por servicio</div>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">📲</div>
+          <h3>Presencia Digital</h3>
+          <p>Configuración de Google My Business, redes sociales y herramientas de comunicación para que tus clientes te encuentren.</p>
+          <div class="service-price">Consultar precio · Pack incluido</div>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">☁️</div>
+          <h3>Backups y Recuperación</h3>
+          <p>Recuperación de archivos perdidos y sistema de copias de seguridad automático para que nunca pierdas nada importante.</p>
+          <div class="service-price">Diagnóstico gratuito</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ÚLTIMOS ARTÍCULOS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:left;margin-bottom:40px">
+        <div class="tag">Del blog</div>
+        <h2>Artículos que te ayudan a entender la tecnología</h2>
+      </div>
+      <div class="posts-home-grid">
+        <div class="post-card featured reveal" onclick="openArticle(0)">
+          <div class="post-thumb">
+            <div class="post-thumb-img" style="background:linear-gradient(135deg,#0a0a0a,#1a2a4a)">🐌</div>
+          </div>
+          <div class="post-body">
+            <div class="post-cat">Soporte Técnico</div>
+            <h3>Por qué tu computadora está lenta y cómo solucionarlo</h3>
+            <p class="post-excerpt">No hace falta comprar una nueva. En el 80% de los casos, la lentitud tiene solución simple. Te explico exactamente qué revisar y qué hacer, paso a paso.</p>
+            <div class="post-meta">
+              <span>Mayo 2025 · Soluciones IT</span>
+              <span class="post-read-time">8 min de lectura</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card reveal" onclick="openArticle(1)">
+          <div class="post-thumb">
+            <div class="post-thumb-img" style="background:linear-gradient(135deg,#1a0a0a,#4a1a2a)">💸</div>
+          </div>
+          <div class="post-body">
+            <div class="post-cat">Negocios Digitales</div>
+            <h3>5 errores que están arruinando tu negocio online</h3>
+            <p class="post-excerpt">Si tenés un negocio y no conseguís clientes por internet, probablemente estás cometiendo uno de estos errores. Y tienen solución.</p>
+            <div class="post-meta">
+              <span>Abril 2025</span>
+              <span class="post-read-time">6 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card reveal reveal-delay-1" onclick="openArticle(2)">
+          <div class="post-thumb">
+            <div class="post-thumb-img" style="background:linear-gradient(135deg,#0a1a0a,#1a3a1a)">🌐</div>
+          </div>
+          <div class="post-body">
+            <div class="post-cat">Desarrollo Web</div>
+            <h3>Cuándo necesitás una página web (y cuándo no)</h3>
+            <p class="post-excerpt">No todo negocio necesita una web. Pero hay un punto exacto en que no tenerla te cuesta plata. ¿Estás en ese punto?</p>
+            <div class="post-meta">
+              <span>Marzo 2025</span>
+              <span class="post-read-time">5 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px" class="reveal">
+        <button class="btn-ghost" onclick="navigate('blog')">
+          Ver todos los artículos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOBRE MÍ -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <div class="about-img">👨‍💻</div>
+          <div class="about-float">
+            <div class="about-float-num">+3</div>
+            <div class="about-float-label">Años resolviendo problemas tech</div>
+          </div>
+        </div>
+        <div class="about-content reveal reveal-delay-2">
+          <div class="tag">Sobre mí</div>
+          <h2>Tecnología confiable, explicada en tu idioma</h2>
+          <p>Soy técnico IT con experiencia en soporte, redes y desarrollo web. Trabajo con personas y negocios que quieren solucionar sus problemas de tecnología sin lidiar con jerga técnica o presupuestos inflados.</p>
+          <p>Mi diferencial es simple: te explico todo de forma clara, llegás a tiempo, cumplo lo que prometo y no desaparezco después de cobrar. Nada más, nada menos.</p>
+          <div class="about-skills">
+            <span class="skill-chip">🖥️ Windows / Mac</span>
+            <span class="skill-chip">🌐 WordPress / HTML</span>
+            <span class="skill-chip">🔐 Seguridad</span>
+            <span class="skill-chip">📡 Redes</span>
+            <span class="skill-chip">☁️ Google Cloud</span>
+            <span class="skill-chip">📱 Android / iOS</span>
+          </div>
+          <button class="btn btn-primary" onclick="navigate('contact')">Trabajemos juntos →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TESTIMONIOS -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="tag">Testimonios</div>
+        <h2>Lo que dicen quienes ya <br />resolvieron sus problemas</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Mi computadora tardaba 10 minutos en arrancar. En menos de 2 horas, quedó como nueva. No puedo creer la diferencia. Y me explicó todo lo que hacía sin tecnicismos.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">ML</div>
+            <div>
+              <div class="testi-name">María L.</div>
+              <div class="testi-rol">Contadora · Buenos Aires</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-1">
+          <div class="testi-quote">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Me hizo la página web de mi panadería en una semana y ya tuve mis primeros pedidos online. La inversión se pagó sola en el primer mes. Lo recomiendo sin dudar.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">CR</div>
+            <div>
+              <div class="testi-name">Carlos R.</div>
+              <div class="testi-rol">Emprendedor · Rosario</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-2">
+          <div class="testi-quote">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Pensé que había perdido todos mis archivos del trabajo. Los recuperó casi todos en 3 horas. Ahora tengo un backup automático y duermo tranquila. Profesional total.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">VP</div>
+            <div>
+              <div class="testi-name">Valeria P.</div>
+              <div class="testi-rol">Docente · Córdoba</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <h2>¿Tenés un problema tech?<br />Vamos a solucionarlo.</h2>
+          <p>Primera consulta sin costo. Sin compromiso. Sin tecnicismos.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn" onclick="navigate('contact')">Consultá ahora →</button>
+          <a class="btn btn-whatsapp" href="https://wa.me/5491100000000?text=Hola!%20Necesito%20ayuda%20con%20un%20problema%20tech." target="_blank" rel="noopener">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /home -->
+
+
+<!-- ════════════════════════════
+     PÁGINA: BLOG
+════════════════════════════ -->
+<div id="page-blog" class="page">
+  <div class="blog-header">
+    <div class="tag">Blog</div>
+    <h1>Tecnología explicada<br /><span class="highlight">para humanos.</span></h1>
+    <p style="max-width:540px;margin-top:16px;color:var(--white-dim)">Sin jerga. Sin rodeos. Artículos prácticos para que entiendas tu tecnología y tomes mejores decisiones.</p>
+    <div class="blog-filters" id="blogFilters">
+      <button class="filter-btn active" data-cat="all">Todos</button>
+      <button class="filter-btn" data-cat="soporte">🔧 Soporte Técnico</button>
+      <button class="filter-btn" data-cat="web">🌐 Desarrollo Web</button>
+      <button class="filter-btn" data-cat="consejos">💡 Consejos IT</button>
+      <button class="filter-btn" data-cat="negocios">💼 Negocios Digitales</button>
+    </div>
+  </div>
+  <div class="blog-grid" id="blogGrid">
+    <!-- Generado por JS -->
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     PÁGINA: ARTÍCULO INDIVIDUAL
+════════════════════════════ -->
+<div id="page-article" class="page">
+  <div class="article-wrap" id="articleContent">
+    <!-- Generado dinámicamente por JS -->
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     PÁGINA: CONTACTO
+════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="tag">Contacto</div>
+      <h1>Hablemos.<br /><span class="highlight">Sin vueltas.</span></h1>
+      <p style="margin-bottom:32px">Primera consulta sin costo. Contame qué problema tenés y te digo cómo puedo ayudarte. Sin compromiso ni tecnicismos.</p>
+      <div class="contact-methods">
+        <a class="contact-method" href="https://wa.me/5491100000000" target="_blank" rel="noopener" style="text-decoration:none">
+          <span class="cm-icon">💬</span>
+          <div>
+            <div class="cm-label">WhatsApp</div>
+            <div class="cm-value">+54 9 11 0000-0000</div>
+          </div>
+          <span class="cm-arrow">→</span>
+        </a>
+        <a class="contact-method" href="mailto:hola@solucionesit.com" style="text-decoration:none">
+          <span class="cm-icon">📧</span>
+          <div>
+            <div class="cm-label">Email</div>
+            <div class="cm-value">hola@solucionesit.com</div>
+          </div>
+          <span class="cm-arrow">→</span>
+        </a>
+        <div class="contact-method">
+          <span class="cm-icon">⏱️</span>
+          <div>
+            <div class="cm-label">Tiempo de respuesta</div>
+            <div class="cm-value">Menos de 2 horas hábiles</div>
+          </div>
+        </div>
+        <a class="contact-method btn-whatsapp" href="https://wa.me/5491100000000?text=Hola!%20Necesito%20ayuda%20técnica." target="_blank" rel="noopener" style="text-decoration:none;border-radius:var(--r-lg);justify-content:center;gap:10px;font-weight:700;color:#fff">
+          💬 Escribir por WhatsApp ahora
+        </a>
+      </div>
+    </div>
+    <div class="contact-form-box reveal">
+      <h3>Enviame un mensaje</h3>
+      <p style="color:var(--white-muted)">Completá el formulario y te contesto a la brevedad.</p>
+      <form id="contactForm" method="POST" action="https://api.web3forms.com/submit" novalidate>
+        <input type="hidden" name="access_key" value="5d9e4853-c88d-4ad4-a0da-c5f4f6a06198" />
+        <input type="hidden" name="subject" value="Nuevo mensaje de consulta - Soluciones IT" />
+        <input type="hidden" name="from_name" value="Formulario de Contacto Soluciones IT" />
+        <input type="hidden" name="to_email" value="josycasco@gmail.com" />
+        <input type="hidden" name="redirect" value="" />
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" name="name" id="cf-name" placeholder="Josias" value="Josias" required />
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" id="cf-email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono *</label>
+            <input type="tel" name="phone" id="cf-phone" placeholder="3329532281" value="3329532281" required />
+          </div>
+          <div class="form-group">
+            <label>Empresa *</label>
+            <input type="text" name="company" id="cf-company" placeholder="Nort IT" value="Nort IT" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tipo de problema</label>
+          <select name="tipo_problema" id="cf-type">
+            <option value="">Seleccioná una opción…</option>
+            <option>🖥️ Mi computadora está lenta o con virus</option>
+            <option>🌐 Necesito una página web</option>
+            <option>🛡️ Mantenimiento mensual</option>
+            <option>📦 Instalación / configuración de software</option>
+            <option>💾 Recuperación de archivos</option>
+            <option>📲 Presencia digital / redes</option>
+            <option>🔧 Otro problema técnico</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Contame tu problema *</label>
+          <textarea name="mensaje" id="cf-msg" placeholder="Describí qué está pasando. Cuanto más detalle, mejor puedo ayudarte…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Enviar mensaje →</button>
+        <p class="form-note">🔒 Tu información se enviará directamente a josycasco@gmail.com</p>
+        <div class="form-feedback" id="cfFeedback"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     FOOTER (siempre visible)
+════════════════════════════ -->
+<footer id="siteFooter">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" onclick="navigate('home')" style="cursor:pointer">
+          <div class="nav-logo-icon">IT</div>
+          <span>Soluciones <em>IT</em></span>
+        </div>
+        <p>Tecnología confiable para personas y pequeños negocios. Sin tecnicismos, con resultados reales.</p>
+        <div class="footer-social">
+          <div class="social-btn" title="Instagram" onclick="showToast('📸 Instagram próximamente')">📸</div>
+          <div class="social-btn" title="WhatsApp" onclick="window.open('https://wa.me/5491100000000','_blank')">💬</div>
+          <div class="social-btn" title="LinkedIn" onclick="showToast('💼 LinkedIn próximamente')">💼</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Servicios</h5>
+        <ul>
+          <li onclick="navigate('contact')">Soporte técnico</li>
+          <li onclick="navigate('contact')">Páginas web</li>
+          <li onclick="navigate('contact')">Mantenimiento</li>
+          <li onclick="navigate('contact')">Backups</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Blog</h5>
+        <ul>
+          <li onclick="navigate('blog')">Soporte técnico</li>
+          <li onclick="navigate('blog')">Desarrollo web</li>
+          <li onclick="navigate('blog')">Consejos IT</li>
+          <li onclick="navigate('blog')">Negocios digitales</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li onclick="navigate('contact')">📩 Formulario</li>
+          <li onclick="window.open('https://wa.me/5491100000000','_blank')">💬 WhatsApp</li>
+          <li>📧 hola@solucionesit.com</li>
+          <li>⏱️ Resp. en &lt;2 horas</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="footerYear"></span> Soluciones IT Inteligentes. Todos los derechos reservados.</span>
+      <span>Hecho con 💙 y mucho café.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast y back-to-top -->
+<div class="toast-box" id="toastBox"></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+/* ═══════════════════════════════════════
+   DATOS DEL BLOG
+═══════════════════════════════════════ */
+const ARTICLES = [
+  {
+    id: 0,
+    title: "Por qué tu computadora está lenta y cómo solucionarlo",
+    cat: "soporte",
+    catLabel: "🔧 Soporte Técnico",
+    excerpt: "No hace falta comprar una nueva. En el 80% de los casos, la lentitud tiene solución simple. Te explico exactamente qué revisar y qué hacer.",
+    readTime: "8 min",
+    date: "Mayo 2025",
+    emoji: "🐌",
+    bg: "linear-gradient(135deg,#0a0a0a,#1a2a4a)",
+    content: `
+      <p>Sí, ya sé lo que pensás: "Esta computadora ya no sirve, voy a tener que comprar otra". Pero antes de gastar plata, escuchame: en el 80% de los casos que veo, la lentitud tiene solución y no requiere gastar nada en hardware nuevo.</p>
+
+      <h2>Por qué se vuelve lenta con el tiempo</h2>
+      <p>Una computadora nueva se siente rápida porque está "limpia". Con el tiempo, se acumula basura digital: programas que corren de fondo, archivos temporales que nadie borró, software que se instaló solo, y a veces hasta virus que consumen recursos sin que te des cuenta.</p>
+      <p>El resultado: una PC que tardaba 30 segundos en arrancar ahora tarda 5 minutos. No porque se "gastó", sino porque está trabajando para muchas cosas a la vez sin que lo sepas.</p>
+
+      <h2>Las 5 causas más comunes</h2>
+      <h3>1. Programas que se abren solos al encender</h3>
+      <p>Cada vez que instalás algo —un antivirus nuevo, una app de impresora, Spotify, Skype— ese programa se suma a la lista de "inicio". Al encender la computadora, todos arrancan juntos y se pelean por los recursos. Resultado: arranque lento y sistema pesado.</p>
+      <div class="article-tip">
+        <strong>✅ Cómo solucionarlo</strong>
+        <p>En Windows: abrí el Administrador de tareas (Ctrl+Shift+Esc), entrá a la pestaña "Inicio" y deshabilità los programas que no necesitás que carguen al encender. Podés dejar el antivirus y poco más.</p>
+      </div>
+
+      <h3>2. El disco duro está lleno</h3>
+      <p>Cuando el disco tiene menos del 15% libre, el sistema operativo no tiene espacio para trabajar. Windows y Mac usan espacio del disco como "memoria temporal" cuando la RAM se agota. Sin espacio libre, todo se frena.</p>
+      <div class="article-tip">
+        <strong>✅ Cómo solucionarlo</strong>
+        <p>Buscá y borrá archivos duplicados, vaciá la papelera, desinstalá programas que no usás, y mové fotos y videos a un disco externo o la nube. El objetivo: siempre tener al menos 20% libre.</p>
+      </div>
+
+      <h3>3. Virus y malware</h3>
+      <p>No todos los virus hacen algo dramático. Muchos trabajan en silencio: muestran publicidad, espían lo que escribís, o usan tu computadora para minar criptomonedas. Todo eso consume CPU y RAM sin que lo veas.</p>
+      <div class="article-tip">
+        <strong>✅ Cómo solucionarlo</strong>
+        <p>Instalá Malwarebytes (versión gratuita), hacé un análisis completo y eliminá lo que encuentra. Complementalo con Windows Defender (viene gratis con Windows 10/11) como protección permanente.</p>
+      </div>
+
+      <h3>4. Poca RAM para lo que pedís</h3>
+      <p>Si tenés 4GB de RAM y usás Chrome con 15 pestañas abiertas, el sistema operativo y la edición de fotos, es normal que vaya lento. La RAM es la "memoria de trabajo" y se agota rápido con varias cosas abiertas.</p>
+      <div class="article-tip">
+        <strong>✅ Qué hacer</strong>
+        <p>Cerrá las pestañas que no usás, evitá tener muchos programas abiertos a la vez. Si el problema persiste, puede valer la pena agregar RAM (es barato y es el upgrade más efectivo).</p>
+      </div>
+
+      <h3>5. El disco duro tiene sectores dañados</h3>
+      <p>Los discos mecánicos (HDD) se deterioran con el tiempo. Los sectores dañados hacen que el sistema tarde mucho en leer archivos. Si escuchás "clics" o "chirridos", eso es una señal de alarma.</p>
+      <div class="article-tip">
+        <strong>✅ Solución urgente</strong>
+        <p>Hacé un backup inmediato de tus archivos importantes. Un HDD con sectores dañados puede fallar pronto. Reemplazarlo por un SSD es la mejor inversión que podés hacer en una PC vieja: la transforma por completo.</p>
+      </div>
+
+      <h2>El upgrade que más cambia todo: el SSD</h2>
+      <p>Si tu computadora tiene un disco duro mecánico (HDD) y lo reemplazás por un SSD, vas a sentir que compraste una PC nueva. Los tiempos de arranque pasan de 5 minutos a 15 segundos. Los programas abren al instante. No exagero.</p>
+      <p>Un SSD de 240GB cuesta entre $40 y $70, y el proceso de cambio toma menos de una hora. Es la relación costo-beneficio más alta en soporte técnico.</p>
+
+      <h2>Plan de acción rápido</h2>
+      <ol>
+        <li>Revisá los programas de inicio (Administrador de tareas → Inicio)</li>
+        <li>Vaciá la papelera y limpiá archivos temporales</li>
+        <li>Pasá un análisis completo de Malwarebytes</li>
+        <li>Asegurate de tener al menos 20% del disco libre</li>
+        <li>Si nada mejora: considera cambiar el HDD por un SSD</li>
+      </ol>
+
+      <h2>Conclusión</h2>
+      <p>Una computadora lenta casi siempre tiene solución. Antes de resignarte o gastar en una nueva, probá estos pasos. En la mayoría de los casos, con una limpieza correcta y quizás un SSD, vas a recuperar una máquina rápida y confiable.</p>
+      <p>¿No encontraste la solución o el problema persiste? <strong>Escribime</strong> y lo analizamos juntos. Primera consulta sin costo.</p>
+    `
+  },
+  {
+    id: 1,
+    title: "5 errores que están arruinando tu negocio online",
+    cat: "negocios",
+    catLabel: "💼 Negocios Digitales",
+    excerpt: "Si tenés un negocio y no conseguís clientes por internet, probablemente estás cometiendo uno de estos errores. Y tienen solución.",
+    readTime: "6 min",
+    date: "Abril 2025",
+    emoji: "💸",
+    bg: "linear-gradient(135deg,#1a0a0a,#4a1a2a)",
+    content: `
+      <p>Tenés un negocio, publicás en Instagram, quizás hasta tenés una página web. Pero los clientes por internet son escasos o no aparecen. El problema casi nunca es la calidad del producto. El problema es cómo estás mostrándolo online.</p>
+      <p>Estos son los 5 errores más comunes que veo en pequeños negocios digitales — y cómo solucionarlos sin gastar una fortuna.</p>
+
+      <h2>Error 1: No tener presencia en Google</h2>
+      <p>¿Sabías que más del 90% de las personas buscan un negocio en Google antes de ir o comprar? Si cuando alguien busca "panadería en [tu ciudad]" no aparecés, directamente no existís para ellos.</p>
+      <p>Y no hablo de una página web cara. Hablo de Google My Business: el perfil gratuito que muestra tu negocio en Google Maps, con horario, fotos, teléfono y reseñas.</p>
+      <div class="article-tip">
+        <strong>✅ Solución inmediata</strong>
+        <p>Creá tu perfil en Google My Business (business.google.com). Es gratis, tarda menos de 30 minutos y puede traerte clientes desde el primer día. Agregá fotos reales, el horario actualizado y respondé las reseñas.</p>
+      </div>
+
+      <h2>Error 2: Tu Instagram no vende, solo muestra</h2>
+      <p>Muchos negocios usan Instagram como "portfolio visual" pero nunca como herramienta de venta. Publican fotos bonitas sin llamada a la acción, sin precio, sin link para comprar, sin forma fácil de contacto.</p>
+      <p>El cliente ve el producto, le interesa, pero no sabe cómo comprarlo. Tres segundos después, ya está viendo otro post.</p>
+      <div class="article-tip">
+        <strong>✅ Cambio simple y poderoso</strong>
+        <p>En cada publicación de producto: mencioná el precio, decí claramente cómo comprar ("escribinos al WhatsApp"), y poné el link de contacto en la bio. Parece básico, pero muy pocos lo hacen bien.</p>
+      </div>
+
+      <h2>Error 3: Responder tarde (o no responder)</h2>
+      <p>En el mundo digital, un cliente que no recibe respuesta en 2 horas, ya le escribió a tu competencia. Los tiempos de respuesta online son brutales. La gente está acostumbrada a la inmediatez.</p>
+      <p>He visto negocios perder ventas seguras por responder mensajes de Instagram 48 horas después. Para cuando llega la respuesta, el cliente ya compró en otro lado.</p>
+      <div class="article-tip">
+        <strong>✅ Sistema simple</strong>
+        <p>Activá las respuestas automáticas de WhatsApp Business ("Fuera de horario, te respondo en X horas"). Configurá notificaciones para no perder mensajes. Y establecé un horario de atención claro y cumplilo.</p>
+      </div>
+
+      <h2>Error 4: No tener página web (cuando ya la necesitás)</h2>
+      <p>Instagram es alquilado. Si mañana cambian el algoritmo, te suspenden la cuenta o simplemente cierra (¿recordás MySpace?), perdés todo. Una página web es tuya. Nadie te la puede quitar.</p>
+      <p>Además, una web le da seriedad a tu negocio. Un cliente que busca proveedores o servicios de cierto valor, confía más en un negocio con web propia que en uno que solo tiene Instagram.</p>
+      <div class="article-tip">
+        <strong>✅ Cuándo invertir en una web</strong>
+        <p>Si vendés servicios de más de $100, si querés atraer clientes de otras ciudades, si recibís las mismas preguntas todo el tiempo, o si querés aparecer en Google — ya es momento de tener una web. No es tan cara como pensás.</p>
+      </div>
+
+      <h2>Error 5: Ignorar las reseñas y comentarios</h2>
+      <p>Las reseñas son el "boca en boca" del siglo XXI. El 85% de las personas confía tanto en una reseña online como en la recomendación de un amigo. No tener reseñas o tenerlas sin responder es una señal de alarma para clientes potenciales.</p>
+      <p>Peor aún: no responder reseñas negativas. Una queja sin respuesta se convierte en evidencia pública de mal servicio. Una respuesta empática y profesional puede convertir una mala reseña en publicidad positiva.</p>
+      <div class="article-tip">
+        <strong>✅ Estrategia de reseñas</strong>
+        <p>Pedile reseñas a tus clientes satisfechos (por WhatsApp es más efectivo). Respondé TODAS las reseñas, positivas y negativas. Y nunca respondas enojado — siempre con tono profesional y enfocado en solucionar.</p>
+      </div>
+
+      <h2>¿Por dónde empezar?</h2>
+      <p>No intentes corregir todo a la vez. Elegí el error que más se aplica a tu negocio y arreglalo esta semana. Luego el siguiente. La consistencia gana a la perfección inmediata.</p>
+      <p>Si querés que te ayude a analizar la presencia online de tu negocio y te diga concretamente qué mejorar, <strong>escribime</strong>. La primera revisión es sin costo.</p>
+    `
+  },
+  {
+    id: 2,
+    title: "Cuándo necesitás una página web (y cuándo no)",
+    cat: "web",
+    catLabel: "🌐 Desarrollo Web",
+    excerpt: "No todo negocio necesita una web. Pero hay un punto exacto en que no tenerla te cuesta clientes y plata. ¿Estás en ese punto?",
+    readTime: "5 min",
+    date: "Marzo 2025",
+    emoji: "🌐",
+    bg: "linear-gradient(135deg,#0a1a0a,#1a3a1a)",
+    content: `
+      <p>Esta es la pregunta que me hacen más seguido: "¿Necesito una página web o me alcanza con Instagram y WhatsApp?". La respuesta honesta es: depende. Hay situaciones en que sí la necesitás urgente, y otras en que todavía podés esperar.</p>
+      <p>Vamos a verlo sin rodeos.</p>
+
+      <h2>Cuándo NO la necesitás (todavía)</h2>
+      <p>Seamos honestos: si estás en un momento muy inicial del negocio, si todavía no validaste que hay demanda real, o si vendés en ferias o locales físicos con clientela ya establecida y sin intención de crecer online — puede esperar.</p>
+      <p>Una página web sin tráfico es como un local en un desierto. Primero confirmar que hay demanda, después invertir en la vitrina digital.</p>
+      <div class="article-tip">
+        <strong>Situaciones donde puede esperar:</strong>
+        <p>Negocio muy nuevo (menos de 6 meses), sin presupuesto mínimo para mantenerla, clientela 100% de referidos presenciales, o producto muy de nicho que no se busca en Google.</p>
+      </div>
+
+      <h2>Cuándo SÍ la necesitás (y quizás ya era tarde)</h2>
+      <h3>1. Querés aparecer en Google</h3>
+      <p>Google indexa páginas web, no perfiles de Instagram. Si querés que alguien que busca "diseñadora gráfica en Mendoza" o "plomero 24hs en CABA" te encuentre, necesitás una web. No hay otra forma de hacer SEO (aparecer gratis en buscadores).</p>
+
+      <h3>2. Vendés servicios de más de $100</h3>
+      <p>Cuando el ticket de venta sube, la confianza importa más. Un cliente que va a pagarte $500 por un servicio va a querer verificar quién sos, qué hacés, qué experiencia tenés. Un Instagram da poco contexto. Una web bien hecha transmite seriedad y profesionalismo.</p>
+
+      <h3>3. Tus competidores ya tienen web</h3>
+      <p>Si todos en tu rubro tienen página web y vos no, estás partiendo en desventaja en cualquier búsqueda online. El cliente compara. Y el que no tiene web parece "menos establecido".</p>
+
+      <h3>4. Repetís las mismas explicaciones todo el tiempo</h3>
+      <p>Si cada día contestás las mismas preguntas por WhatsApp ("¿cuánto cuesta?", "¿qué incluye?", "¿cómo trabajo?"), una web puede automatizar esas respuestas. Tu página de servicios o FAQ hace el trabajo por vos.</p>
+
+      <h3>5. Querés trabajar con clientes de otras ciudades o países</h3>
+      <p>Instagram tiene alcance limitado a tu red de seguidores. Una web con buen SEO te posiciona ante personas que nunca te vieron, en cualquier lugar. Es tu vendedor 24/7.</p>
+
+      <h2>¿Cuánto cuesta y cuánto tardas en recuperar la inversión?</h2>
+      <p>Una web profesional básica puede costar entre $299 y $800. Si tu servicio tiene un ticket promedio de $150, necesitás que te traiga entre 2 y 6 clientes nuevos para pagarla. Con buena estrategia, eso puede pasar en el primer mes.</p>
+      <p>Pensala como esto: no es un gasto, es un vendedor permanente que trabaja mientras dormís.</p>
+
+      <h2>¿Y las opciones gratuitas como Wix o Squarespace?</h2>
+      <p>Existen, y en algunos casos son válidas para empezar. Pero tienen limitaciones: aparecen con el logo de la plataforma, el SEO es mediocre, y si querés funciones más avanzadas terminás pagando igual. Para un negocio en crecimiento, conviene hacerlo bien desde el principio.</p>
+
+      <h2>Conclusión directa</h2>
+      <p>Si cumplís alguna de las condiciones del "SÍ necesitás web", el próximo cliente que perdiste porque no te encontró en Google ya te costó más que el precio de la web.</p>
+      <p>¿Querés saber si tiene sentido para tu negocio específico? <strong>Escribime</strong> contándome qué hacés y te doy una opinión honesta, sin intentar venderte nada que no necesitás.</p>
+    `
+  }
+];
+
+/* ═══════════════════════════════════════
+   ESTADO
+═══════════════════════════════════════ */
+let currentPage = 'home';
+let currentArticle = null;
+let activeCat = 'all';
+
+/* ═══════════════════════════════════════
+   NAVEGACIÓN
+═══════════════════════════════════════ */
+function navigate(page) {
+  // Ocultar todo
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+  // Mostrar página
+  const el = document.getElementById('page-' + page);
+  if (el) { el.classList.add('active'); currentPage = page; }
+
+  // Nav activo
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const nl = document.querySelector(`.nav-link[data-page="${page}"]`);
+  if (nl) nl.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Renderizar si corresponde
+  if (page === 'blog') renderBlog();
+  if (page === 'home') { setTimeout(initReveal, 100); setTimeout(animateCounters, 300); }
+  setTimeout(initReveal, 100);
+}
+
+/* ═══════════════════════════════════════
+   BLOG — LISTADO
+═══════════════════════════════════════ */
+function renderBlog(cat = activeCat) {
+  activeCat = cat;
+  const grid = document.getElementById('blogGrid');
+  const posts = cat === 'all' ? ARTICLES : ARTICLES.filter(a => a.cat === cat);
+
+  // Filtros activos
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+
+  if (!grid) return;
+
+  if (posts.length === 0) {
+    grid.innerHTML = `<div style="grid-column:span 3;text-align:center;padding:80px 24px;color:var(--white-muted)">
+      <div style="font-size:3rem;margin-bottom:16px">🔍</div>
+      <h3>No hay artículos en esta categoría aún</h3>
+      <p>Próximamente publicaremos más contenido.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = posts.map(p => `
+    <div class="post-card reveal" onclick="openArticle(${p.id})">
+      <div class="post-thumb">
+        <div class="post-thumb-img" style="background:${p.bg}">${p.emoji}</div>
+      </div>
+      <div class="post-body">
+        <div class="post-cat">${p.catLabel}</div>
+        <h3>${p.title}</h3>
+        <p class="post-excerpt">${p.excerpt}</p>
+        <div class="post-meta">
+          <span>${p.date}</span>
+          <span class="post-read-time">${p.readTime}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  setTimeout(initReveal, 80);
+}
+
+// Filtros del blog
+document.addEventListener('DOMContentLoaded', () => {
+  const filters = document.getElementById('blogFilters');
+  if (filters) {
+    filters.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (btn) renderBlog(btn.dataset.cat);
+    });
+  }
+});
+
+/* ═══════════════════════════════════════
+   ARTÍCULO INDIVIDUAL
+═══════════════════════════════════════ */
+function openArticle(id) {
+  const article = ARTICLES[id];
+  if (!article) return;
+  currentArticle = article;
+
+  const shareUrl = encodeURIComponent(window.location.href);
+  const shareText = encodeURIComponent(article.title + ' — Soluciones IT Inteligentes');
+
+  document.getElementById('articleContent').innerHTML = `
+    <button class="article-back" onclick="history.back(); setTimeout(()=>{if(document.getElementById('page-article').classList.contains('active')) navigate('blog');}, 50)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      Volver al blog
+    </button>
+    <div class="article-header">
+      <span class="tag">${article.catLabel}</span>
+      <div class="article-meta">
+        <span>Soluciones IT Inteligentes</span>
+        <span class="article-meta-dot"></span>
+        <span>${article.date}</span>
+        <span class="article-meta-dot"></span>
+        <span>${article.readTime} de lectura</span>
+      </div>
+      <h1 class="article-title">${article.title}</h1>
+    </div>
+    <div class="article-hero-thumb" style="background:${article.bg}">
+      <span style="position:relative;z-index:1;font-size:5rem">${article.emoji}</span>
+    </div>
+    <div class="article-content">${article.content}</div>
+    <div class="article-share">
+      <h4>¿Te sirvió? Compartilo</h4>
+      <div class="share-btns">
+        <a class="share-btn wa" href="https://wa.me/?text=${shareText}%20${shareUrl}" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="share-btn" href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" rel="noopener">🐦 Twitter</a>
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" rel="noopener">📘 Facebook</a>
+        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}" target="_blank" rel="noopener">💼 LinkedIn</a>
+      </div>
+    </div>
+    <div style="margin-top:48px;background:var(--black-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px;text-align:center">
+      <h3 style="margin-bottom:12px">¿Necesitás ayuda con esto?</h3>
+      <p style="margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto">Primera consulta sin costo. Contame tu problema y lo resolvemos juntos.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="navigate('contact')">Contactarme →</button>
+        <a class="btn btn-whatsapp" href="https://wa.me/5491100000000?text=Leí%20el%20artículo%20sobre%20${encodeURIComponent(article.title)}%20y%20necesito%20ayuda." target="_blank" rel="noopener">💬 WhatsApp directo</a>
+      </div>
+    </div>
+  `;
+
+  navigate('article');
+}
+
+/* ═══════════════════════════════════════
+   FORMULARIO DE CONTACTO
+═══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const phone = document.getElementById('cf-phone').value.trim();
+      const company = document.getElementById('cf-company').value.trim();
+      const type = document.getElementById('cf-type').value.trim();
+      const msg = document.getElementById('cf-msg').value.trim();
+      const fb = document.getElementById('cfFeedback');
+
+      // Validación
+      if (!name || !email || !phone || !company || !msg) {
+        fb.className = 'form-feedback err';
+        fb.textContent = '⚠️ Por favor completá todos los campos requeridos.';
+        return;
+      }
+      if (!email.includes('@')) {
+        fb.className = 'form-feedback err';
+        fb.textContent = '⚠️ Ingresá un email válido.';
+        return;
+      }
+
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+
+      // Crear FormData
+      const formData = new FormData(form);
+
+      // Enviar con Web3Forms
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          fb.className = 'form-feedback ok';
+          fb.textContent = '✅ ¡Mensaje enviado! Te responderé en menos de 2 horas hábiles.';
+          form.reset();
+          // Restaurar valores por defecto
+          document.getElementById('cf-name').value = 'Josias';
+          document.getElementById('cf-phone').value = '3329532281';
+          document.getElementById('cf-company').value = 'Nort IT';
+          btn.textContent = 'Enviar mensaje →';
+          btn.disabled = false;
+          showToast('✅ Mensaje enviado correctamente a josycasco@gmail.com');
+        } else {
+          throw new Error(data.message || 'Error en el envío');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        fb.className = 'form-feedback err';
+        fb.textContent = '❌ Error al enviar. Por favor intenta de nuevo o contacta por WhatsApp.';
+        btn.textContent = 'Enviar mensaje →';
+        btn.disabled = false;
+        showToast('⚠️ Hubo un error. Intenta nuevamente.');
+      });
+    });
+  }
+});
+
+/* ═══════════════════════════════════════
+   MENÚ MÓVIL
+═══════════════════════════════════════ */
+function toggleMenu() {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('ham');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+function initReveal() {
+  const els = document.querySelectorAll('.reveal:not(.visible)');
+  if (!els.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+}
+
+/* ═══════════════════════════════════════
+   CONTADORES ANIMADOS
+═══════════════════════════════════════ */
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    let current = 0;
+    const step = Math.ceil(target / 30);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (el.dataset.count === '98' ? '%' : '+');
+      if (current >= target) clearInterval(timer);
+    }, 40);
+  });
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR SCROLL
+═══════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  const btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+function showToast(msg, duration = 3500) {
+  const box = document.getElementById('toastBox');
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  box.appendChild(t);
+  setTimeout(() => {
+    t.classList.add('out');
+    t.addEventListener('animationend', () => t.remove());
+  }, duration);
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+  setTimeout(initReveal, 150);
+  setTimeout(animateCounters, 600);
+  console.log('🚀 Soluciones IT Inteligentes — Online');
+});
+</script>
+</body>
+</html>
